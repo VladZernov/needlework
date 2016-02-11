@@ -1,0 +1,136 @@
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>@ViewData["Title"] - NeedleWork2016</title>
+
+        <link rel="stylesheet" href="~/css/style.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+</head>
+<body>
+    <header>
+        <img src="~/img/Web-Design-Ledger-200px-tall.png" alt="" id="logo">
+        <ul>
+            <a asp-controller="Home" asp-action="Index"><li>Information page</li></a>
+            <a asp-controller="Palettes" asp-action="Index"><li>Edit palettes</li></a>        
+            <a asp-controller="AdminUser" asp-action="Index"><li>Admin page</li></a>
+            @await Html.PartialAsync("_LoginPartial")
+        </ul>
+        <img src="~/img/menu2.png" alt="" id="showMenu">
+    </header>
+
+@if (User.IsSignedIn())
+{
+    <img src="~/img/Mail-icon.png" alt="" id="feedback"> 
+}
+    
+    @RenderBody()
+
+    <footer>
+        <div id="footerLeft">
+            <a href="~/index.html">Main page</a><br />
+            <a href="~/index.html">Information page</a><br />
+            <a class="langChange" name="ru">Русский</a>
+            <a class="langChange" name="en">English</a>
+            <a id="changePassword">Change password</a>
+        </div>
+        <div id="footerCenter">
+            <p>© 2016 All rights reserved</p>
+        </div>
+        <div id="footerRight">
+            <p>
+                e: needlework2016@gmail.com.aq<br />
+                p: +55-555-55-55><br />
+            </p>
+        </div>
+    </footer>
+
+
+    <div class="popUpBack" id="popUpLoginBack">
+        <div class="popUp" id="popUpLogin">
+            <div id="loginForm">
+                <h2 class="center">Login</h2>
+                <form class="center">
+                    <input id="loginEmail" type="text" placeholder="email" />
+                    <input id="loginPassword" type="password" placeholder="password" /><br />
+                    <input id="loginRemember" type="checkbox">Remember me<br />
+                    <input id="loginSubmit" type="button" value="submit" /><br />
+                </form>
+                <a id='forgotPassword'>forgot password</a><br />
+                <a id='registration'>registration</a>
+            </div>
+            <div id="registrationForm">
+                <h2 class="center">Registration</h2>
+                <form class="center">
+                    <input id="registrationFirstName" type="text" placeholder="first name"/>
+                    <input id="registrationLastName" type="text" placeholder="last name"/>
+                    <input id="registrationEmail" type="text" placeholder="email"/>
+                    <input id="registrationPassword" type="password" placeholder="password" /><br />
+                    <input id="registrationConfirmPassword" type="password" placeholder="confirm password" /><br />
+                    <div id="registrationReCaptcha" class="g-recaptcha" data-sitekey="6LeTQxcTAAAAAPEgVz319fEVVh-ztFub9GaIGqZc"></div>
+                    <input id="registrationSubmit" type="button" value="submit" /><br />
+                </form>
+                <a id='login'>login</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="popUpBack" id="popFeedbackBack">
+        <div class="popUp" id="popFeedback">
+            <h2 class="center">Write your feedback here</h2>
+            <form class="center">
+                <textarea id="feedBackArea"></textarea><br />
+                <input id="feedBackSubmit" type="button" value="submit" />
+            </form>
+        </div>
+    </div>
+
+    <div class="popUpBack" id="popChangePasswordBack">
+        <div class="popUp" id="popChangePassword">
+            <h2 class="center">Change password</h2>
+            <form class="center">
+                <input id="changePasswordOldPassword" placeholder="old password" type="password"/>
+                <input id="changePasswordNewPassword" placeholder="new password" type="password" />
+                <input id="changePasswordNewPasswordConfirm" placeholder="confirm new password" type="text" />
+                <input id="changePasswordSubmit" type="button" value="submit" />
+            </form>
+        </div>
+    </div>
+
+    <div class="popUpBack" id="popForgotPasswordBack">
+        <div class="popUp" id="popForgotPassword">
+            <h2 class="center">Forgot password</h2>
+            <form class="center">
+                <input id="forgotPasswordEmail" placeholder="email" type="text" />
+                <input id="forgotPasswordSubmit" type="button" value="submit" />
+            </form>
+        </div>
+    </div>
+
+    <div class="popUpBack" id="popResetPasswordBack">
+        <div class="popUp" id="popResetPassword">
+            <h2 class="center">Reset password</h2>
+            <form class="center">
+                <input id="resetPasswordEmail" placeholder="email" type="text" />
+                <input id="resetPasswordNewPassword" placeholder="new password" type="password" />
+                <input id="resetPasswordNewPasswordConfirm" placeholder="confirm new password" type="password" />
+                <input id="resetPasswordSubmit" type="button" value="submit" />
+            </form>
+        </div>
+    </div>
+
+    <div class="popUpBack" id="popInformationBack">
+        <div class="popUp" id="popInformation">
+            <h2 class="center" id="informationTitle"></h2>
+            <h4 class="center" id="informationMessage"></h4>
+        </div>
+    </div>
+
+
+    <script src="~/js/index.js"></script>
+
+</body>
+</html>

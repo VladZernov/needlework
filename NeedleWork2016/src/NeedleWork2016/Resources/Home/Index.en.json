@@ -1,0 +1,21 @@
+﻿{
+  "Title": "Welcome to our site",
+  "FirstBlockName": "Step One",
+  "FirstBlockText": [
+    "Embroidery is the handicraft of decorating fabric or other materials with needle and thread or yarn. Embroidery may also incorporate other materials such as metal strips, pearls, beads, quills, and sequins. Embroidery is most often used on caps, hats, coats, blankets, dress shirts, denim, stockings, and golf shirts. Embroidery is available with a wide variety of thread or yarn color.",
+    "Our site helps to make amazing embroidery patterns."
+  ],
+  "SecondBlockName": "Step Two",
+  "SecondBlockText": [
+    "You can:",
+    "- upload your picture from PC or via URL",
+    "- input count of stitches in width",
+    "- select palette",
+    "- finaly create embroidery pattern"
+  ],
+  "ThirdBlockName": "Step Third",
+  "ThirdBlockText": [
+    "Also you can make your personal custom palettes. To do it you must be loggeed in. So, please login or register to make your custom paletts or give your feedback.",
+    "Thanks for using our system."
+  ]
+}

@@ -1,0 +1,124 @@
+<link rel="stylesheet" href="~/css/editPage.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<div id="body">
+
+
+
+
+    <div class="container" id="containerLeft">
+
+        <div id="hidePalette">
+            <h2 align='center'>Make new <span>palette</span> for your work</h2><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, odit, maxime.
+            Molestiae ducimus odio itaque beatae sint, saepe molestias, et sed qui,
+            a incidunt, sit sequi! Voluptas ullam dolore adipisci. <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam obcaecati, impedit voluptatibus officia nulla praesentium dolores eligendi sunt rerum fuga quae explicabo fugit tenetur suscipit aliquid iusto minus? Facilis, modi.
+        </div>
+
+        <br><br><br>
+
+        <p>
+            <label for="name">Enter Palette Name</label><br>
+            <input type="text" name="name" id="inputPaletteName"><label for="PaletteName"></label> 
+        </p>
+        <p>
+            <input type="submit" name="submit" value="Submit" id="sentPaletteName">
+            <input type="button" id="cancel" value="Cancel">
+        </p>
+
+        <p>
+            <input type="button" name="AddPalette" value="Add Palette" id="AddPalette">
+        </p>
+
+    </div>
+
+
+
+
+    <div class="container" id="containerMiddle">
+        <h2>Palette List</h2><br>
+
+        @*<div class="PaletteName">First Palette </div><input type="button" name="Remove" value="Remove" class="RemovePalette">*@
+         
+
+    </div>
+
+
+
+
+
+
+    <div class="container" id="containerRight">
+        <div id="hideColor">
+            <h2 align='center'>Make new <span>color</span> for your work</h2><br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, odit, maxime.
+            Molestiae ducimus odio itaque beatae sint, saepe molestias, et sed qui,
+            a incidunt, sit sequi! Voluptas ullam dolore adipisci. <br>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam obcaecati, impedit voluptatibus officia nulla praesentium dolores eligendi sunt rerum fuga quae explicabo fugit tenetur suscipit aliquid iusto minus? Facilis, modi.
+        </div>
+
+        <br><br><br>
+
+        <div id="choiceColor">
+            <div id="colorPalette" title="Basic dialog">
+                <canvas width="256" height="256" id="canvas_picker" crossorigin="anonymous"></canvas>
+            </div>
+
+            <form action="">
+                HEX: <input type="text" id="inputColorHex"></input><label for="hex"></label><br>
+                RGB: <input type="text" id="inputColorRGB"></input><label for="rgb"></label><br>
+                Name:<input type="text" name="name" id="inputColorName"></input><label for="colorName"></label><br>
+                <input type="submit" value="Submit">
+                <input type="button" class="clear" value="Clear">
+            </form>
+            <!--
+            <div id="hex"></div>
+            <div id="rgb"></div>
+            -->
+
+
+        </div>
+
+
+        <!--
+
+        <p>
+        <label for="name">Enter Color Name</label><br>
+
+        </p>
+        <p>
+        <input type="submit" name="submit" value="Submit">
+        <input type="button" id="cancel" value="Cancel">
+        </p>
+        -->
+
+       
+
+    </div>
+
+
+
+
+
+
+    <div class="container" id="colorList">
+        <div id="backToPalette"><img src="./img/goDown.png" alt="">Back to Palette</div>
+        <h2>Color List</h2><br><br><br>
+        <div id="AddColor"><img src="./img/goDown.png" alt="">Add Color</div>
+
+        <div class="ChangeColor">
+            <input type="button" name="EditColor" value="Edit" class="EditColor">
+            <input type="button" name="RemoveColor" value="Remove" class="RemoveColor">
+        </div>
+           
+               
+        @*<div class="color"><div class="Thumbnail"></div><div class="colorName">SomeColor</div><div class="colorCode">#fff000</div></div> *@
+        
+    </div>
+
+</div>   
+ 
+<script src="~/js/editPage.js"></script>
+<script src="~/js/colorPicker.js"></script>  
+<script src="~/js/stopFailColor.js"></script>

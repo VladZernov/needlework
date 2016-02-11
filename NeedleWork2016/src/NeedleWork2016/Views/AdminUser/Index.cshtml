@@ -1,0 +1,99 @@
+@model NeedleWork2016.ViewModels.Admin.AdminUsersViewModel
+
+@{
+    ViewData["Title"] = "Admin page";
+}
+
+
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="~/lib/jqgrid-master/css/ui.jqgrid.css" rel="stylesheet" />
+<link href="~/css/admin.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+<div id="admin">
+    <div class="admin-page">
+        <div class="wrap">
+            <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-1">Admin</a></li>
+                    <li><a href="#tabs-2">Localization</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <table id="usersList"></table>
+                    <div id="gridpager"></div>
+                </div>
+                <div id="tabs-2">
+
+                    <form role="form">
+
+                        
+                        <select>
+                            <option>English</option>
+                            <option>Russian</option>
+                        </select>
+                        
+
+                        <div class="first-level">
+                            <span class="title">Title:</span>
+                            <input type="type" name="name" value=" " />
+                        </div>
+
+                        <div class="first-level">
+                            <span class="title">First Block Name: </span>
+                            <input type="type" name="name" value=" " />
+                            <div class="second-level">
+                                <span class="title">First Block Text:</span>
+                                <div class="multiple">
+                                    <span class="default"><input type="type" name="name" value=" " />
+                                        <i class="fa fa-plus-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="first-level">
+                            <span class="title">Second BlockName: </span>
+                            <input type="type" name="name" value=" " />
+                            <div class="second-level">
+                                <span class="title">Second Block Text:</span>
+                                <div class="multiple">
+                                    <span class="default">
+                                        <input type="type" name="name" value=" " />
+                                        <i class="fa fa-plus-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="first-level">
+                            <span class="title">Third Block Name: </span>
+                            <input type="type" name="name" value=" " />
+                            <div class="second-level">
+                                <span class="title">Third Block Text:</span>
+                                <div class="multiple">
+                                    <span class="default">
+                                        <input type="type" name="name" value=" " />
+                                        <i class="fa fa-plus-circle"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="deleteSuccess">User deleted successfully!</div>
+
+<script src="~/lib/jqgrid-master/js/jquery.jqgrid.min.js"></script>
+<script src="~/lib/jqgrid-master/js/i18n/grid.locale-en.js"></script>
+<script src="~/js/admin.js"></script>
+
+
+
+

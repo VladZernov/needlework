@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using (Html.BeginForm("DownloadReport", "PDF"))
+{
+    <div id="convertAboutPageButtonDiv">
+        <input type="submit" value="Save Embroidery Pattern" />
+    </div>
+}

@@ -1,0 +1,60 @@
+﻿@model NeedleWork2016.ViewModels.Home.HomeViewModel
+
+<link rel="stylesheet" href="~/css/informationPage.css">
+<link rel="stylesheet" href="~/css/skeleton.css">
+<link rel="stylesheet" href="~/css/normalize.css">
+
+<div id="welcome">
+    <h1>@Model.Title</h1>
+    <img src="~/img/goDown.png" alt="">
+</div>
+
+
+<div id="content">
+    <div class="row contentFirst">
+        <div class="four columns">
+            <div class="soul">
+                <img src="~/img/im1.gif" />
+            </div>
+        </div>
+        <div class="eight columns">
+            <p class="soul contentText">
+                <span>@Model.FirstBlockName</span><br/>
+                @Model.FirstBlockText[0]<br/><br/>
+                @Model.FirstBlockText[1]
+            </p>
+        </div>
+    </div>
+    <div class="row contentSecond">
+        <div class="eight columns">
+            <p class="soul contentText">
+                <span>@Model.SecondBlockName</span><br/>
+                @Model.SecondBlockText[0]<br />
+                @Model.SecondBlockText[1]<br />
+                @Model.SecondBlockText[2]<br />
+                @Model.SecondBlockText[3]<br />
+                @Model.SecondBlockText[4]<br />
+            </p>
+        </div>
+        <div class="four columns">
+            <div class="soul">
+                <img src="~/img/im1.gif" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="four columns">
+            <div class="soul">
+                <img src="~/img/im1.gif" />
+            </div>
+        </div>
+        <div class="eight columns">
+            <p class="soul contentText">
+                <span>@Model.ThirdBlockName</span><br>
+                @Model.ThirdBlockText[0]
+                <br /><br />
+                @Model.ThirdBlockText[1]<br />
+            </p>
+        </div>
+    </div>
+</div>

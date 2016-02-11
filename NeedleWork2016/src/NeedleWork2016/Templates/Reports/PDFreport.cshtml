@@ -1,0 +1,87 @@
+﻿
+
+
+@using NeedleWork2016.Core;
+@{
+    Layout = null;
+}
+
+
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .contain {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header {
+            height: 94px;
+            position: absoulte;
+            top: 0px;
+            width: 100%;
+            background: #f6d654 url('../img/header1.jpg');
+        }
+
+        .content {
+            height: 100%;
+            position: relative;
+            background: white;
+            min-height: 1300px;
+            margin: 0 auto; 
+        }
+
+            .content .data {
+                padding: 10px;
+            }
+
+            
+
+        #name {
+            font-family: Comic Sans MS;
+            font-size: 40px;
+            color: #914220;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="contain">
+        <div class="content">
+            <div class="header">
+                <p id="name">Embroidery.NET</p>
+            </div>
+            <div class="center">
+                <img width="1400" src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image1 } )" /><p></p>
+                <img width="1400" src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image2 } )" /><p></p>
+                <img src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image3 } )" /><p></p>
+           </div>
+
+           
+           </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+              

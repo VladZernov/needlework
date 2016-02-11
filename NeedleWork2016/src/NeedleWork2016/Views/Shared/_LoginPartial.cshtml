@@ -1,0 +1,11 @@
+﻿@using System.Security.Claims
+
+@if (User.IsSignedIn())
+{
+    <a class="u-pullRight" id="signOut"><li>Sign out</li></a>
+    <li class="u-pullRight">Hello, @User.GetUserName()</li>
+}
+else
+{
+    <a class="u-pullRight" id="signIn"><li>Sign in</li></a>
+}
