@@ -10,10 +10,12 @@ namespace NeedleWork2016.Controllers
     public class AdminUserController : Controller
     {
         private NeedleWork2016Context _context;
+        private readonly Core.Error.ListOfErrors _listOfErrors;
 
         public AdminUserController(NeedleWork2016Context context)
         {
             _context = context;
+            _listOfErrors = Core.Error.ErrorStorage.GetListOfErrors();
         }
 
         public IActionResult Index()
@@ -21,7 +23,7 @@ namespace NeedleWork2016.Controllers
             return View();
         }
         //Serialize to JSON
-        [HttpGet]
+        [HttpPost]
         public string GetUserData()
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -82,6 +84,16 @@ namespace NeedleWork2016.Controllers
         public void DeleteUserData(string id)
         {
             UserProfileRepository.DeleteUserData(id);
+        }
+        [HttpPost]
+        public void GridSave(string id, string firstname, string lastname, string email)
+        {
+            if (id!=null&&firstname!=null&&lastname!=null&&email!=null)
+            UserProfileRepository.EditUser(new AspNetUsers()
+            { Id = id,
+              FirstName =firstname,
+              LastName =lastname,
+              Email =email  });
         }
     }
 }

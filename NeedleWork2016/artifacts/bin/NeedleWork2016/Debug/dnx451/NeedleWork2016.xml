@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NeedleWork2016</name>
+    </assembly>
+    <members>
+        <member name="M:NeedleWork2016.Controllers.FeedbacksController.CreateFeedBack(System.String)">
+            <summary>
+            Method for create a new feedback
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Controllers.PdfGenerateController.GetPhoto(System.String)">
+            <summary>
+            Thіs method generates a file in jpg format, method is called from PDFreport.cshtml
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Controllers.PdfGenerateController.GenerateDataForPDF(System.String,System.String,System.String)">
+            <summary>
+            This method get data from the frontend, save this data in the ViewBag and return view PDFreport.cshtml. The filter is applied to this method ConvertToPdfFilterAttribute
+            </summary>
+            <param name="imageData1"></param>
+            <param name="imageData2"></param>
+            <param name="imageData3"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.CreateTable">
+            <summary>
+            This metod create table in the pdf file
+            </summary>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.GetTable">
+            <summary>
+            This method return table for the pdf report
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.GetImage(System.Byte[])">
+            <summary>
+            This method create the image on the base of the byte array
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.CreateCell(iTextSharp.text.Image)">
+            <summary>
+            This method create  a cell in the pdf file
+            </summary>
+            <param name="image"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.Settings(System.IO.MemoryStream,iTextSharp.text.Document)">
+            <summary>
+            This method consist settings of pdf file
+            </summary>
+            <param name="ms"></param>
+            <param name="doc"></param>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.byteArrayToImage1(System.Byte[])">
+            <summary>
+            This method converts image on the base of the byte array
+            </summary>
+            <param name="byteArrayIn"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDF.StringToCode(System.String)">
+            <summary>
+            This method converts base64 string to the byte array
+            </summary>
+            <param name="imageData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NeedleWork2016.Core.PDFdata.StringToCode(System.String)">
+            <summary>
+            This method convers base64 string to byte array
+            </summary>
+            <param name="imageData"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

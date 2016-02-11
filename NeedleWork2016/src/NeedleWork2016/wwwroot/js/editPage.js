@@ -62,7 +62,7 @@ $(document).ready(function () {
     $('#AddColor').click(function () {
 
         window.addNotEditColor = true;
-        
+
         if ($(window).width() > 1100) {
             $('#hideColor').animate({ left: "100%" }, 500);
             $('#choiceColor').animate({ top: "15%" }, 500);
@@ -83,8 +83,8 @@ $(document).ready(function () {
         event.stopPropagation();
         window.addNotEditColor = false;
         window.changedColor = $(this).parent().parent().prop('id');
-        
-        
+
+
 
         if ($(window).width() > 1100) {
             $('#hideColor').animate({ left: "100%" }, 500);
@@ -94,7 +94,7 @@ $(document).ready(function () {
             $('#containerRight').animate({ left: "0%" }, 500);
             $('#hideColor').animate({ left: "100%" }, 0);
             $('#choiceColor').animate({ top: "10%" }, 0);
-           
+
         }
     });
 
@@ -243,9 +243,8 @@ $(document).ready(function () {
         var data = {
             id: removedPalette
         };
-        
+
         function Success(data) {
-           
             console.log(removedPalette);
             $(".PaletteName#" + removedPalette).nextAll("input:eq(0), input:eq(1)").remove();
             $(".PaletteName#" + removedPalette).remove();
@@ -273,9 +272,9 @@ $(document).ready(function () {
         var data = {
             id: removedColor
         };
-         
+
         function Success(data) {
-                                  
+
             $('.color#' + removedColor).remove();
             console.log("Yep yep, delete!");
             console.log(data);
@@ -288,6 +287,54 @@ $(document).ready(function () {
         myAjax('delete', '/Palettes/RemoveColor', data, Success, Error);
 
     });
+
+
+    var editPaletteName = false;
+    $('body').on('click', '.EditPalette', function (event) {       
+
+        if (editPaletteName) {
+
+            var newPaletteName = $(this).prev().children('.ChangePaletteName').val();
+            var data = {
+                palette:{
+                    id: $(this).prev().prop('id'),
+                    name: newPaletteName
+                }              
+            };
+            
+            function Success(data) {
+                console.log("Yep yep, palette name changed!");
+                console.log(data);
+                $(this).val("Edit name").css({ backgroundColor: "#00baff" });
+                $(this).prev().text(newPaletteName);
+                $(this).prev().children('.ChangePaletteName').remove();
+                editPaletteName = false;
+            }
+            function Error(data) {
+                console.log(data);
+                alert("fail");
+            }
+
+            myAjax('post', '/Palettes/EditPalette', data, Success, Error);
+           
+        }
+        else {
+            var oldPaletteName = $(this).prev().text();
+            $(this).val("Save").css({ backgroundColor: "rgb(52, 196, 90)" });
+            $(this).prev().append("<input type='text' class='ChangePaletteName' value='" + oldPaletteName + "' name='" + oldPaletteName + "'>");
+            editPaletteName = true;
+        }
+
+
+    });
+
+
+
+    $('body').on('click', '.ChangePaletteName', function (event) {
+        event.stopPropagation();
+    });
+
+
 
 
 });

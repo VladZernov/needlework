@@ -12,7 +12,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+   
     <style>
         * {
             box-sizing: border-box;
@@ -34,7 +34,7 @@
             position: absoulte;
             top: 0px;
             width: 100%;
-            background: #f6d654 url('../img/header1.jpg');
+            background: #FFD700 url('../img/header1.jpg');
         }
 
         .content {
@@ -52,7 +52,7 @@
             
 
         #name {
-            font-family: Comic Sans MS;
+            font-family: Arial Black;
             font-size: 40px;
             color: #914220;
             text-align: center;
@@ -62,23 +62,23 @@
         
     </style>
 </head>
-<body>
+<body >
     <div class="contain">
         <div class="content">
             <div class="header">
-                <p id="name">Embroidery.NET</p>
+                <p></p>
+                <p id="name">Your simple embroidery</p>
             </div>
             <div class="center">
-                <img width="1400" src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image1 } )" /><p></p>
-                <img width="1400" src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image2 } )" /><p></p>
-                <img src="@Url.Action("GetPhoto", "PdfGenerate", new {s= @ViewBag.image3 } )" /><p></p>
+                <p></p>
+                <img  id="image1" src="" /><p></p>
+                <p></p>
+                <img  id="image2" src="" /><p></p>
+                <p></p>
+                <img  id="image3" src="" /><p></p>
            </div>
-
-           
            </div>
         </div>
-    </div>
-
 </body>
 </html>
 

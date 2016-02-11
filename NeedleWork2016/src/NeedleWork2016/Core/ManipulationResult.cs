@@ -63,15 +63,15 @@ namespace NeedleWork2016.Core
             }
         }
 
-        public int ExeptionMessage
+        public string ExeptionMessage
         {
             get
             {
-                return _exeptionNumber;
+                return _exeptionMessage;
             }
             set
             {
-                value = _exeptionNumber;
+                value = _exeptionMessage;
             }
         }
 

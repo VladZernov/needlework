@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NeedleWork2016.Entities;
 using NeedleWork2016.Core;
+using Newtonsoft.Json;
 
 namespace NeedleWork2016.ViewModels.Palettes
 {
@@ -13,7 +14,8 @@ namespace NeedleWork2016.ViewModels.Palettes
         private string _name;
         private string _hex;
         private int _idPalette;
-        //hide for null
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ManipulationResult Result { get; set; }
 
         public int Id

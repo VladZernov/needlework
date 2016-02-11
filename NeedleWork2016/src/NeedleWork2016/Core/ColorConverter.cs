@@ -8,7 +8,7 @@ namespace NeedleWork2016.Core
 {
     public class ColorConverter
     {
-        public static object[] HexToRGBwithName(string hexColor, string colorname)
+        public static object[] HexToRGB(string hexColor, string colorname)
         {
             if (hexColor.IndexOf('#') != -1)
                 hexColor = hexColor.Replace("#", "");

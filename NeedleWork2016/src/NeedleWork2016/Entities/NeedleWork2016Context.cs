@@ -73,13 +73,9 @@ namespace NeedleWork2016.Entities
 
                 entity.Property(e => e.Email).HasMaxLength(256);
 
-                entity.Property(e => e.FirstName)
-                    .HasMaxLength(100)
-                    .HasColumnType("nchar");
+                entity.Property(e => e.FirstName).HasMaxLength(100);
 
-                entity.Property(e => e.LastName)
-                    .HasMaxLength(100)
-                    .HasColumnType("nchar");
+                entity.Property(e => e.LastName).HasMaxLength(100);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
 

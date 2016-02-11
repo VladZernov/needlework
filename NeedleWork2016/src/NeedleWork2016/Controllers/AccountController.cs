@@ -7,6 +7,8 @@ using NeedleWork2016.Models;
 using System.Net.Mail;
 using System.Security.Claims;
 using System;
+using NeedleWork2016.Core;
+using NeedleWork2016.Repository;
 
 namespace NeedleWork2016.Controllers
 {
@@ -32,31 +34,38 @@ namespace NeedleWork2016.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        //Method for user login
+        //Method for user LogIn
         public async Task<string> Login(string email, string password, bool remember)
         {
-            //Checking mail register
-            if (Repository.UserProfileRepository.UserIsRegistered(email))
+            try
             {
-                //Checking user email confirm
-                if (!Repository.UserProfileRepository.IsUserConfirmedEmail(email))
-                    return _listOfErrors[1002].ToJson();
-
-                if (email == null || password == null)
-                    return _listOfErrors[1003].ToJson();
-
-                //LogIn user
-                var result = await _signInManager.PasswordSignInAsync(email, password, remember, lockoutOnFailure: false);
-
-                if (result.Succeeded)
+                //Сhecking e-mail on the registered
+                if (UserProfileRepository.UserIsRegistered(email))
                 {
-                    return _listOfErrors[2000].ToJson();
+                    //Checking user email confirm
+                    if (!UserProfileRepository.IsUserConfirmedEmail(email))
+                        return _listOfErrors[1002].ToJson();
+
+                    if (email == null || password == null)
+                        return _listOfErrors[1003].ToJson();
+
+                    //LogIn user
+                    var result = await _signInManager.PasswordSignInAsync(email, password, remember, lockoutOnFailure: false);
+
+                    if (result.Succeeded)
+                    {
+                        return _listOfErrors[2001].ToJson();
+                    }
+                    else
+                        return _listOfErrors[1004].ToJson();
+
                 }
-                else
-                    return _listOfErrors[1004].ToJson();
-                
+                return _listOfErrors[1005].ToJson();
             }
-            return _listOfErrors[1005].ToJson();
+            catch (Exception ex)
+            {
+                return new Core.Error.Error(ex.HResult, ex.Source, ex.Message).ToJson();
+            }
         }
 
         [HttpPost]
@@ -67,10 +76,23 @@ namespace NeedleWork2016.Controllers
             try
             {
                 //CAPTCHA validation
-                bool IsCaptchaValid = (Core.reCaptchaClass.Validate(captchaResponse) == "True" ? true : false);
+                bool IsCaptchaValid = reCaptchaClass.Validate(captchaResponse) == "True" ? true : false;
 
                 if (IsCaptchaValid)
-                {
+                {                    
+                    //Checking user data
+                    if (firstName == null || lastName == null)
+                        return _listOfErrors[1007].ToJson();
+
+                    if (email == null)
+                        return _listOfErrors[1008].ToJson();
+
+                    //Сhecking e-mail on the registered
+                    if (UserProfileRepository.UserIsRegistered(email))
+                    {
+                        return _listOfErrors[1009].ToJson();
+                    }
+
                     //Creating new user
                     var user = new ApplicationUser
                     {
@@ -87,58 +109,70 @@ namespace NeedleWork2016.Controllers
                     if (result.Succeeded)
                     {
                         //Add user role
-                        result = await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "User");
+
                         //Generation message body
-                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                        var callbackUrl = GetLinkForUser(user, "emailconfirmed", "Account", "ConfirmEmail");
+
                         //Add message tempalate
-                        string template = Core.ResourceReader.GetTemplate("..//Templates//Message.cshtml").Replace("@User", firstName);
-                        //Sending message to user email
+                        string template = ResourceReader.GetTemplate("..//Templates//Message.cshtml").Replace("@User", firstName);
+
+                        //Sending message to user e-mail
                         SendEmail(email, "Confirm your account", template + "<a href=\"" + callbackUrl + "\">Registration confirmation</a>");
-                        //Sign out
+
+                        //User LogOff
                         await _signInManager.SignOutAsync();
-                        return _listOfErrors[2000].ToJson();
+
+                        return _listOfErrors[2002].ToJson();
                     }
                     else
                     {
-                        return _listOfErrors[1000].ToJson();
+                        string errors = "";
+
+                        //Get list of errors
+                        foreach (var i in result.Errors)
+                            errors += new Core.Error.Error(int.Parse(i.Code), "Error", i.Description).ToJson();
+
+                        return errors;
                     }
                 }
                 else
                     return _listOfErrors[1001].ToJson();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new Core.Error.Error(ex.HResult, ex.Source, ex.Message).ToJson();
             }
         }
-        
+
         [HttpPost]
         //Method for user logOff
         public void LogOff()
         {
             _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
         }
 
         [HttpGet]
         [AllowAnonymous]
-        //Method for confirm user email 
+        //Method for confirm user mail 
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
+            //Checking userId and email identity code
             if (userId == null || code == null)
             {
-                return View("Error");
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { parametr = _listOfErrors[1006].ToJson() });
             }
+
             var user = await _userManager.FindByIdAsync(userId);
 
             if (user != null)
             {
-                Repository.UserProfileRepository.EmailConfirm(user.Email);
-
+                UserProfileRepository.EmailConfirm(user.Email);
             }
+            else
+                return RedirectToAction(nameof(HomeController.Index), "Home", new { parametr = _listOfErrors[1010].ToJson() });
 
-            return RedirectToAction(nameof(HomeController.Index), "Home", new { parametr = "emailconfirmed" });
+            return RedirectToAction(nameof(HomeController.Index), "Home", new { parametr = _listOfErrors[2003].ToJson() });
         }
 
         //Method that send message with body, subject
@@ -149,6 +183,7 @@ namespace NeedleWork2016.Controllers
             client.EnableSsl = true;
             client.Host = "smtp.gmail.com";
             client.Port = 587;
+            client.Timeout = 0;
 
             System.Net.NetworkCredential credentials =
               new System.Net.NetworkCredential("needlework2016@gmail.com", "24912696");
@@ -173,20 +208,21 @@ namespace NeedleWork2016.Controllers
         {
             try
             {
-                //Checking mail register
-                if (Repository.UserProfileRepository.UserIsRegistered(email))
+                //Checking mail is register
+                if (UserProfileRepository.UserIsRegistered(email))
                 {
                     var user = await _userManager.FindByNameAsync(email);
-                    //Generation message body
-                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                    var url = Url.Action("Index", "Home", null, protocol: HttpContext.Request.Scheme);
-                    string callbackUrl = url + String.Format("/Home/Index/?code={0}&parametr=resetPassword", code);
-                    //Add message template
-                    string template = Core.ResourceReader.GetTemplate("..//Templates//Message.cshtml").Replace("@User", user.FirstName);
-                    //Sending message
-                    SendEmail(email, "Click on this link to change your password", template + "<a href=\"" + callbackUrl + "\">link</a>");
 
-                    return _listOfErrors[2000].ToJson();
+                    //Generation message body
+                    var callbackUrl = GetLinkForUser(user, "resetPassword", "Home", "Index");
+
+                    //Add message template
+                    string template = ResourceReader.GetTemplate("..//Templates//ResetPasswordMessage.cshtml").Replace("@User", user.FirstName);
+
+                    //Sending message
+                    SendEmail(email, "Change your password", template + "<a href=\"" + callbackUrl + "\">Reset password</a>");
+
+                    return _listOfErrors[2006].ToJson();
                 }
                 return
                     _listOfErrors[1005].ToJson();
@@ -197,6 +233,14 @@ namespace NeedleWork2016.Controllers
             }
         }
 
+        //get link for user 
+        public string GetLinkForUser(ApplicationUser user, string parametr, string controller, string action)
+        {
+            var code =  _userManager.GeneratePasswordResetTokenAsync(user);
+            var url = Url.Action(action, controller, null, protocol: HttpContext.Request.Scheme);
+            return url + string.Format("/?userId={0}&code={1}&parametr={2}", user.Id, code.Result, parametr);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         //Method for reset password
@@ -204,20 +248,39 @@ namespace NeedleWork2016.Controllers
         {
             try
             {
+                //Checking e-mail identity code
                 if (code == null)
                     return _listOfErrors[1006].ToJson();
-                //Check email register
-                if (Repository.UserProfileRepository.UserIsRegistered(email))
+
+                if (password == null)
+                    return _listOfErrors[1004].ToJson();
+
+                //Check e-mail on the registered
+                if (UserProfileRepository.UserIsRegistered(email))
                 {
                     var user = await _userManager.FindByNameAsync(email);
+
                     //Reset user password
                     var result = await _userManager.ResetPasswordAsync(user, code, password);
+
                     if (result.Succeeded)
                     {
+                        //User logIn
                         await _signInManager.PasswordSignInAsync(email, password, true, lockoutOnFailure: false);
-                        return _listOfErrors[2000].ToJson();
+                        return _listOfErrors[2007].ToJson();
+                    }
+                    else
+                    {
+                        string errors = "";
+
+                        //Get list of errors
+                        foreach (var i in result.Errors)
+                            errors += new Core.Error.Error(int.Parse(i.Code), "Error", i.Description).ToJson();
+
+                        return errors;
                     }
                 }
+
                 return
                     _listOfErrors[1005].ToJson();
             }
@@ -241,8 +304,9 @@ namespace NeedleWork2016.Controllers
 
                 if (result.Succeeded)
                 {
-                    return _listOfErrors[2000].ToJson();
+                    return _listOfErrors[2007].ToJson();
                 }
+
                 return _listOfErrors[1004].ToJson();
             }
             catch (Exception ex)

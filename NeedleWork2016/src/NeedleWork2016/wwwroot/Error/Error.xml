@@ -1,14 +1,29 @@
 <?xml version="1.0"?>
 <ListOfErrors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ErrorList>
-    <Error Status="Error" Code="1000" Name="Registration was failed" Definition="When creating a user error has occurred" />
-    <Error Status="Error"  Code="1001" Name="CAPTCHA is invalid" Definition="User has not passed CAPTCHA" />
-    <Error Status="Error"  Code="1002" Name="Email unconfirmed" Definition="You need to go on the mail and confirm the registration" />
-    <Error Status="Error"  Code="1003" Name="The data was not entered" Definition="Please enter your login details" />
-    <Error Status="Error"  Code="1004" Name="Wrong passwor" Definition="Please enter correct password" />
-    <Error Status="Error"  Code="1005" Name="Not registered" Definition="You are not registered, please register" />
     <Error Status="Error"  Code="1111" Name="Undefined error" Definition="Unknown error" />
-    <Error Status="Error"  Code="1006" Name="Wrong email code" Definition="Your email identity code is wrong" />
+	
+    <Error Status="Error" Code="1000" Name="Registration was failed" Definition="When creating a user error has occurred." />
+    <Error Status="Error"  Code="1001" Name="CAPTCHA is invalid" Definition="User has not passed CAPTCHA." />
+    <Error Status="Error"  Code="1002" Name="Email unconfirmed" Definition="You need to go on the mail and confirm the registration." />
+    <Error Status="Error"  Code="1003" Name="The data was not entered" Definition="Please enter your login details." />
+    <Error Status="Error"  Code="1004" Name="Wrong password" Definition="Please enter correct password." />
+    <Error Status="Error"  Code="1005" Name="Not registered" Definition="You are not registered, please register." />
+    <Error Status="Error"  Code="1006" Name="Wrong email code or userId" Definition="Your email identity code or userId are wrong." />
+    <Error Status="Error"  Code="1007" Name="Data was not enter" Definition="Please enter first name and last name" />
+    <Error Status="Error"  Code="1008" Name="Email was not enter" Definition="Please enter your email." />
+    <Error Status="Error"  Code="1009" Name="Is registered" Definition="This email is using." />
+    <Error Status="Error"  Code="1010" Name="User was not found" Definition="User with this id was not found" />
+	
     <Error Status="Success"  Code="2000" Name="Success" Definition="Successful operation" />
+    <Error Status="Success"  Code="2001" Name="Success LogIn" Definition="You have successfully LogIn" />
+    <Error Status="Success"  Code="2002" Name="Success Registration" Definition="You have successfully registered" />
+    <Error Status="Success"  Code="2003" Name="Success E-mail confirm" Definition="You e-mail successfully confirmed" />
+	<Error Status="Success"  Code="2006" Name="User is registered" Definition="Successful operation. User is registered." />
+    <Error Status="Success"  Code="2007" Name="Password is changed" Definition="Successful operation. Set new password." />
   </ErrorList>
 </ListOfErrors>
+
+
+
+    

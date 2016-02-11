@@ -1,0 +1,57 @@
+{
+  "webroot": "wwwroot",
+  "userSecretsId": "aspnet5-NeedleWork2016-0fbd73e6-44ee-485b-b74c-ad2acd70c692",
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "NeedleWork2016": "1.0.0"
+  },
+  "commands": {
+    "ef": "EntityFramework.Commands",
+    "web": "Microsoft.AspNet.Server.Kestrel"
+  },
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {},
+      "frameworkAssemblies": {
+        "System.Net": "4.0.0.0",
+        "System.Web": "4.0.0.0",
+        "System.Web.Abstractions": "4.0.0.0",
+        "System.Web.ApplicationServices": "4.0.0.0",
+        "System.Web.DataVisualization": "4.0.0.0",
+        "System.Web.DataVisualization.Design": "4.0.0.0",
+        "System.Web.DynamicData": "4.0.0.0",
+        "System.Web.DynamicData.Design": "4.0.0.0",
+        "System.Web.Entity": "4.0.0.0",
+        "System.Web.Entity.Design": "4.0.0.0",
+        "System.Web.Extensions": "4.0.0.0",
+        "System.Web.Extensions.Design": "4.0.0.0",
+        "System.Web.Mobile": "4.0.0.0",
+        "System.Web.RegularExpressions": "4.0.0.0",
+        "System.Web.Services": "4.0.0.0",
+        "System.Web.Routing": "4.0.0.0",
+        "System.Drawing": "4.0.0.0"
+      }
+    }
+  },
+  "exclude": [
+    "wwwroot",
+    "node_modules"
+  ],
+  "publishExclude": [
+    "**.user",
+    "**.vspscc"
+  ],
+  "scripts": {
+    "prepublish": [
+      "npm install",
+      "bower install",
+      "gulp clean",
+      "gulp min"
+    ]
+  },
+  "entryPoint": "NeedleWork2016",
+  "loadable": false
+}

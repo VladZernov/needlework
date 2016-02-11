@@ -247,6 +247,27 @@
           "lib/itextsharp.dll": {}
         }
       },
+      "itextsharp.xmlworker/5.5.4": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
+        }
+      },
+      "iTextSharp-LGPL/4.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/iTextSharp.dll": {}
+        },
+        "runtime": {
+          "lib/iTextSharp.dll": {}
+        }
+      },
       "Ix-Async/1.2.5": {
         "type": "package",
         "frameworkAssemblies": [
@@ -2082,6 +2103,21 @@
           }
         }
       },
+      "RazorPDF2/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4",
+          "itextsharp.xmlworker": "5.5.4"
+        },
+        "compile": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        },
+        "runtime": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        }
+      },
       "Remotion.Linq/2.0.1": {
         "type": "package",
         "compile": {
@@ -2089,6 +2125,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "Rotativa/1.6.4": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Rotativa.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Rotativa.dll": {}
         }
       },
       "Select.Pdf.x64/16.1.1": {
@@ -2310,6 +2355,10 @@
         "runtime": {
           "lib/net45/_._": {}
         }
+      },
+      "System.Web.Mvc/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
       },
       "wkhtmltopdf.msvc.exe/1.0.2": {
         "type": "package"
@@ -2558,6 +2607,27 @@
         },
         "runtime": {
           "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.4": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
+        }
+      },
+      "iTextSharp-LGPL/4.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/iTextSharp.dll": {}
+        },
+        "runtime": {
+          "lib/iTextSharp.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -4398,6 +4468,21 @@
           }
         }
       },
+      "RazorPDF2/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4",
+          "itextsharp.xmlworker": "5.5.4"
+        },
+        "compile": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        },
+        "runtime": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        }
+      },
       "Remotion.Linq/2.0.1": {
         "type": "package",
         "compile": {
@@ -4405,6 +4490,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "Rotativa/1.6.4": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Rotativa.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Rotativa.dll": {}
         }
       },
       "Select.Pdf.x64/16.1.1": {
@@ -4626,6 +4720,10 @@
         "runtime": {
           "lib/net45/_._": {}
         }
+      },
+      "System.Web.Mvc/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
       },
       "wkhtmltopdf.msvc.exe/1.0.2": {
         "type": "package"
@@ -4874,6 +4972,27 @@
         },
         "runtime": {
           "lib/itextsharp.dll": {}
+        }
+      },
+      "itextsharp.xmlworker/5.5.4": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4"
+        },
+        "compile": {
+          "lib/itextsharp.xmlworker.dll": {}
+        },
+        "runtime": {
+          "lib/itextsharp.xmlworker.dll": {}
+        }
+      },
+      "iTextSharp-LGPL/4.1.6": {
+        "type": "package",
+        "compile": {
+          "lib/iTextSharp.dll": {}
+        },
+        "runtime": {
+          "lib/iTextSharp.dll": {}
         }
       },
       "Ix-Async/1.2.5": {
@@ -6714,6 +6833,21 @@
           }
         }
       },
+      "RazorPDF2/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "iTextSharp": "5.5.4",
+          "itextsharp.xmlworker": "5.5.4"
+        },
+        "compile": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        },
+        "runtime": {
+          "lib/net40/RazorPDF.dll": {},
+          "lib/net40/RazorPDF.Legacy.dll": {}
+        }
+      },
       "Remotion.Linq/2.0.1": {
         "type": "package",
         "compile": {
@@ -6721,6 +6855,15 @@
         },
         "runtime": {
           "lib/net45/Remotion.Linq.dll": {}
+        }
+      },
+      "Rotativa/1.6.4": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Rotativa.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Rotativa.dll": {}
         }
       },
       "Select.Pdf.x64/16.1.1": {
@@ -6943,12 +7086,20 @@
           "lib/net45/_._": {}
         }
       },
+      "System.Web.Mvc/1.0.0": {
+        "type": "project",
+        "framework": "DNX,Version=v4.5.1"
+      },
       "wkhtmltopdf.msvc.exe/1.0.2": {
         "type": "package"
       }
     }
   },
   "libraries": {
+    "System.Web.Mvc/1.0.0": {
+      "type": "project",
+      "path": "../../wrap/System.Web.Mvc/project.json"
+    },
     "Aspose/1.0.0": {
       "type": "package",
       "sha512": "UW+jSLEQ4n94maNeASPRE5zdbJnvKOb1IQ23kQTXi9CjCUaxTt4GPujwvTDc3eBqf59e3N5vXk3TaxVkfVNX+w==",
@@ -7186,6 +7337,27 @@
         "lib/itextsharp.dll",
         "lib/iTextSharp.xml",
         "notice.txt"
+      ]
+    },
+    "itextsharp.xmlworker/5.5.4": {
+      "type": "package",
+      "sha512": "76k1fSurrad390v3+uk8a3IgfnFQX3TZn0fpXGqgVusBZJL39VMSNPRnYc8eJwmSV8T8tSit8Y9s0LkAo1zacQ==",
+      "files": [
+        "AGPL.txt",
+        "itextsharp.xmlworker.5.5.4.nupkg",
+        "itextsharp.xmlworker.5.5.4.nupkg.sha512",
+        "itextsharp.xmlworker.nuspec",
+        "lib/itextsharp.xmlworker.dll"
+      ]
+    },
+    "iTextSharp-LGPL/4.1.6": {
+      "type": "package",
+      "sha512": "35STyoGKJOX1oTUWHOzn8/I1NXQMbkxKZfBsYwj8ZjOICVEZIi88wfOekQbYeU6MK0VOoZrMMO1e7KQVjJSIxQ==",
+      "files": [
+        "iTextSharp-LGPL.4.1.6.nupkg",
+        "iTextSharp-LGPL.4.1.6.nupkg.sha512",
+        "iTextSharp-LGPL.nuspec",
+        "lib/iTextSharp.dll"
       ]
     },
     "Ix-Async/1.2.5": {
@@ -8802,6 +8974,18 @@
         "PDFsharp.nuspec"
       ]
     },
+    "RazorPDF2/2.0.0": {
+      "type": "package",
+      "sha512": "j1feAV6hOQOr9PXa+NwDR8lBVLY7uHpEsr44yukZBIasyRn6KYPJXpBedHw9Q5XpfMMCzCDuMQyxc6nWbkiBSA==",
+      "files": [
+        "lib/net40/RazorPDF.dll",
+        "lib/net40/RazorPDF.Legacy.dll",
+        "RazorPDF2.2.0.0.nupkg",
+        "RazorPDF2.2.0.0.nupkg.sha512",
+        "RazorPDF2.nuspec",
+        "README.md"
+      ]
+    },
     "Remotion.Linq/2.0.1": {
       "type": "package",
       "sha512": "SIO6HDH6CU9GC2IZGBrc6q5X5vRhfatXrg9cVavCEG9W6v5e88b+vXjmLGQEorch4sYEIImRr+ODyUMyrmrqAg==",
@@ -8817,6 +9001,18 @@
         "Remotion.Linq.2.0.1.nupkg",
         "Remotion.Linq.2.0.1.nupkg.sha512",
         "Remotion.Linq.nuspec"
+      ]
+    },
+    "Rotativa/1.6.4": {
+      "type": "package",
+      "sha512": "fJdLoPpli4oJnK459vuzYtrl7+pQhqTiSRdjY8irPoN103gzjb9mJUvGbpPJbFs0riw0/3K/mdC6vD5fixt9yQ==",
+      "files": [
+        "content/App_Browsers/qt.browser",
+        "content/Rotativa/wkhtmltopdf.exe",
+        "lib/net40/Rotativa.dll",
+        "Rotativa.1.6.4.nupkg",
+        "Rotativa.1.6.4.nupkg.sha512",
+        "Rotativa.nuspec"
       ]
     },
     "Select.Pdf.x64/16.1.1": {
@@ -9631,7 +9827,7 @@
       "Grid.Mvc.Ajax >= 1.0.31",
       "HtmlRenderer.PdfSharp >= 1.5.0.6",
       "HtmlToPdf >= 1.0.4",
-      "iTextSharp >= 5.5.8",
+      "iTextSharp-LGPL >= 4.1.6",
       "JqGrid >= 1.4.3",
       "jQuery >= 2.2.0",
       "jQuery.jqGrid >= 4.4.4",
@@ -9656,9 +9852,12 @@
       "MvcJqGrid >= 1.0.15",
       "NReco >= 2.0.3",
       "NReco.PdfGenerator >= 1.1.11",
+      "RazorPDF2 >= 2.0.0",
+      "Rotativa >= 1.6.4",
       "Select.Pdf.x64 >= 16.1.1"
     ],
     "DNX,Version=v4.5.1": [
+      "System.Web.Mvc >= 1.0.0-*",
       "fx/System.Net >= 4.0.0",
       "fx/System.Web >= 4.0.0",
       "fx/System.Web.Abstractions >= 4.0.0",

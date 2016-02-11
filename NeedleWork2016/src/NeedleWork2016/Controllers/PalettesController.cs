@@ -138,56 +138,62 @@ namespace NeedleWork2016.Controllers
         [HttpPost]
         public JsonResult CreatePalette(Palette palette)
         {
-            if (User != null)
+            try
             {
-                try {
-                    palette.IdUser = User.GetUserId(); //To transfer this line to View using Razor
+                if (User != null)
+                {
+                    palette.IdUser = User.GetUserId();
                     _context.Palette.Add(palette);
                     _context.SaveChanges();
                     Palette AddedPalette = _context.Palette.OrderByDescending(p => p.Id).FirstOrDefault();
-                    return Json( new PaletteViewModel(AddedPalette) { Result = new ManipulationResult(Result.Success) });
+                    return Json(new PaletteViewModel(AddedPalette) { Result = new ManipulationResult(Result.Success) });
                 }
-                catch (Exception ex)
-                {
-                    if (ex.HResult == -2146233088)
-                        return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "Palette with the same name is already exist") }); //Make Exeption Handler class
-                    else
-                        return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Exeption, ex) });
-                }
+                else
+                    return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "User is unauthenticated") });
             }
-            else
-                return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "User is unauthenticated") });
+            catch (Exception ex)
+            {
+                string ErrorMsg = ErrorHandler.HandleException(ex);
+                if (ErrorMsg != "")
+                    return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, ErrorMsg) });
+                else
+                    return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Exeption, ex) });
+            }
         }
 
         //Create new color for palette
-        [HttpGet]
-        public JsonResult CreateColor(Color color) //int idpalette, string hex, string name; it can be leave as it is but capsulated in object named color
+        [HttpPost]
+        public JsonResult CreateColor(Color color)
         {
-            color = new Color { IdPalette = 3, Name = "345365hg123", Hex = "#FFF16F" };
-            if (User != null)                      //catch dublicate in db exeption
+            try
             {
-                //add idpalette check
-                try
+                if (User != null)
                 {
-                    _context.Color.Add(color);
-                    _context.SaveChanges();
-                    Color AddedColor = _context.Color.OrderByDescending(c => c.Id).FirstOrDefault(); //
-                    ColorViewModel AddedColorView = new ColorViewModel(AddedColor)
+                    if (_context.Palette.Any(p => p.Id == color.IdPalette))
                     {
-                        Result = new ManipulationResult(Result.Success)
-                    };
-                    return Json(AddedColorView);
-                }
-                catch (Exception ex)
-                {
-                    if (ex.HResult == -2146233088)
-                        return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "Color with the same name is already exist") });
+                        _context.Color.Add(color);
+                        _context.SaveChanges();
+                        Color AddedColor = _context.Color.OrderByDescending(c => c.Id).FirstOrDefault();
+                        ColorViewModel AddedColorView = new ColorViewModel(AddedColor)
+                        {
+                            Result = new ManipulationResult(Result.Success)
+                        };
+                        return Json(AddedColorView);
+                    }
                     else
-                    return Json(new ManipulationResult(Result.Exeption, ex));
+                        return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "Palette doesn't exist") });
                 }
+                else
+                    return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "User is unauthenticated") });
+            }            
+            catch (Exception ex)
+            {
+                string ErrorMsg = ErrorHandler.HandleException(ex);
+                if (ErrorMsg != "")
+                    return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, ErrorMsg) });
+                else
+                    return Json(new ManipulationResult(Result.Exeption, ex));
             }
-            else
-                return Json(new PaletteViewModel() { Result = new ManipulationResult(Result.Error, "User is unauthenticated") });
         }
 
         //Edit color using inputed data
@@ -217,7 +223,7 @@ namespace NeedleWork2016.Controllers
         {
             try
             {
-                if (_context.Palette.Contains(palette))
+                if (_context.Palette.Any(p => p.Id == palette.Id))
                 {
                     palette.IdUser = User.GetUserId();
                     _context.Update(palette);

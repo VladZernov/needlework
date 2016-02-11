@@ -5,7 +5,9 @@
 <link rel="stylesheet" href="~/css/normalize.css">
 
 <div id="welcome">
-    <h1>@Model.Title</h1>
+    <div id="welcomeInner">
+        <h1>@Model.Title</h1>
+    </div>
     <img src="~/img/goDown.png" alt="">
 </div>
 
@@ -19,8 +21,8 @@
         </div>
         <div class="eight columns">
             <p class="soul contentText">
-                <span>@Model.FirstBlockName</span><br/>
-                @Model.FirstBlockText[0]<br/><br/>
+                <span>@Model.FirstBlockName</span><br />
+                @Model.FirstBlockText[0]<br /><br />
                 @Model.FirstBlockText[1]
             </p>
         </div>
@@ -28,7 +30,7 @@
     <div class="row contentSecond">
         <div class="eight columns">
             <p class="soul contentText">
-                <span>@Model.SecondBlockName</span><br/>
+                <span>@Model.SecondBlockName</span><br />
                 @Model.SecondBlockText[0]<br />
                 @Model.SecondBlockText[1]<br />
                 @Model.SecondBlockText[2]<br />

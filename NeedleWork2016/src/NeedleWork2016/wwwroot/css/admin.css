@@ -98,6 +98,12 @@ ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
 div#tabs {
     padding:0;
 }
+#TblGrid_usersList tr:nth-child(even){
+    background:white;
+}
+#TblGrid_usersList_2 tr:nth-child(even){
+    background:white;
+}
 /*localization part*/
 
 .first-level span.title {
@@ -108,7 +114,7 @@ div#tabs {
 
 .first-level {
     overflow: hidden;
-    width: 27%;
+    width: 480px;
     margin: 0 0 5px 0;
     border-bottom: 1px solid black;
     padding: 10px 0;
@@ -119,13 +125,13 @@ div#tabs {
 }
 .first-level > input {
     display: block;
-    width: 48%;
+    width: 220px;
     float: right;
-    margin-right: 20px;
+    margin-right: 19px;
 }
 .multiple {
     float: right;
-    width: 55%;
+    width: 220px;
 }
 .multiple > input {
     margin-top: 5px;
@@ -134,20 +140,29 @@ div#tabs {
 }
 .multiple > span input {
     margin-top: 5px;
+    width:220px;
 }
 span.default, span.minus {
     display:block;
     float: right;
+    position:relative;
+    padding-right: 19px;
 }
 i.fa.fa-plus-circle {
     cursor: pointer;
     color: green;
     margin-right: 1px;
     margin-left: -1px;
+    position: absolute;
+    top: 10px;
+    right: -1px;
 }
 i.fa.fa-minus-circle {
     margin-left: 5px;
     cursor:pointer;
     color: red;
     margin-right: 1px;
+    position: absolute;
+    top: 10px;
+    right: -1px;
 }

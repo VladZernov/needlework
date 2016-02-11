@@ -1,3 +1,4 @@
+
 function ReloadJQGrid() {
     $('#usersList').jqGrid('clearGridData');
     $.ajax({
@@ -19,9 +20,10 @@ function ReloadJQGrid() {
         }
     });
 }
+
 function DeleteCustomer(rowId) {
     $.ajax({
-        url: '/AdminUser/DeleteUserData/'+rowId,
+        url: '/AdminUser/DeleteUserData/' + rowId,
         data: {
             id: rowId
         },
@@ -34,7 +36,6 @@ function DeleteCustomer(rowId) {
             ReloadJQGrid();
         }
     });
-
 }
 
 (function ($) {
@@ -43,8 +44,10 @@ function DeleteCustomer(rowId) {
         LoadTableCustomers();
         addRow();
         minusRow();
+        getLocalizationData();
+
         $('.deleteSuccess').dialog({
-            autoOpen:false
+            autoOpen: false
         });
 
         $(".ui-dialog-titlebar").hide();
@@ -54,17 +57,34 @@ function DeleteCustomer(rowId) {
             $("#grid").hide();
         });
 
-
     });
-    function addRow() {
 
+    function getLocalizationData() {
+        $.ajax({
+            url: 'Localization/GetLocalizationData/',
+            datatype: "json",
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            method: "GET",
+            success: function (result) {
+                console.log(result);
+            }
+        })
+    }
+
+    function addRow() {
+        var i = 1;
         $('i.fa.fa-plus-circle').click(function () {
-            $(this).parent().parent().append('<span class="minus"><input type="type" name="name" value=" " /><i class="fa fa-minus-circle"></i></span>');
+            $(this).parent().parent().append('<span id="item" class="minus"><input type="type" id="id-' + i + '" /><i class="fa fa-minus-circle"></i></span>');
+            i++;
         });
     }
+
+    //jQuery(".multiple #item").eq(1).find('input').val()
     function minusRow() {
         $(document).on("click", 'i.fa.fa-minus-circle', function () {
             $(this).parent().css({ "display": "none" });
+            $(this).parent().find('input').val("");
         });
     }
 
@@ -76,12 +96,11 @@ function DeleteCustomer(rowId) {
         });
 
         var tableWidth = $('.admin-page > .wrap').width() + 48,
-            tableHeight = $(".admin-page > .wrap").height()*3 + 50,
+            tableHeight = $(".admin-page > .wrap").height() * 3 + 50,
             lastSel = -1,
             isRowEditable = function (id) {
-            // implement your criteria here 
-            return true;
-        };
+                return true;
+            };
 
         $('.admin-page').css({ height: ($(window).height() - $('footer').height()) + "px" });
         $.ajax({
@@ -89,7 +108,7 @@ function DeleteCustomer(rowId) {
             datatype: "json",
             data: "{}",
             contentType: "application/json; charset=utf-8",
-            method: "GET",
+            method: "POST",
             success: function (result) {
                 var mydata = [
                     { id: "0", FirstName: "Test name", LastName: "Test surname", Email: "mail@example.com", Remove: "<input type='button' value='Remove'>" },
@@ -165,8 +184,8 @@ function DeleteCustomer(rowId) {
                             align: 'center'
                         },
                     ],
-                    
-                    data: mydata,//JSON.parse(result),
+
+                    data: JSON.parse(result),//mydata
                     rowNum: 15,
                     pager: '#gridpager',
                     width: tableWidth,
@@ -177,26 +196,41 @@ function DeleteCustomer(rowId) {
                     multiselect: true,
                     caption: "User list",
 
-                    ondblClickRow: function (id, ri, ci) {
+                    editurl: "/AdminUser/GridSave/",
+                    ondblClickRow: function (id) {
                         if (isRowEditable(id)) {
-                            // edit the row and save it on press "enter" key
                             $("#usersList").jqGrid('editRow', id, true);
+                            console.log(id);
                         }
                     },
 
                     onSelectRow: function (id) {
                         if (id && id !== lastSel) {
-                            // cancel editing of the previous selected row if it was in editing state.
-                            // jqGrid hold intern savedRow array inside of jqGrid object,
-                            // so it is safe to call restoreRow method with any id parameter
-                            // if jqGrid not in editing state
                             $("#usersList").jqGrid('restoreRow', lastSel);
                             lastSel = id;
                         }
-                    },        
-                    
-                }).hideCol('cb');
+                    },
 
+                }).navGrid("#gridpager", { edit: false, add: true, del: false, search: false, refresh: false },
+                 //add options
+                 {
+                     zIndex: 100,
+                     url: 'Test/AddGridData',
+                     closeOnEscape: true,
+                     closeAfterEdit: true,
+                     afterComplete: function (result) {}
+                 },
+                 {
+                     beforeShowForm: function (form) {
+                         var parent = {
+                             width: $("#gbox_usersList").width(),
+                             height: $("#gbox_usersList").height()
+                         };
+
+                         console.log(parent);
+                         $("#editmodusersList").css({ "top": parent.height / 2 + "px", "left": parent.width / 2 - 175 + "px" });
+                     },
+                 }).hideCol('cb');
                 $("#usersList").jqGrid('filterToolbar', { searchOnEnter: false });
             }
         })

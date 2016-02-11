@@ -61,14 +61,17 @@ function CheckHEX() {
 
 var createNewColor = (function () {
     var data = {
-        idpalette: selectedPalette,
-        hex: CheckHEX(),
-        name: CheckName('#inputColorName')
+        color:{
+            idpalette: selectedPalette,
+            hex: CheckHEX(),
+            name: CheckName('#inputColorName')
+        }
+        
     };
 
     function SuccessAdd(data) {
-        CreateColorElements(data.AddedColor.Id, data.AddedColor.Name, data.AddedColor.Hex);
-
+        CreateColorElements(data.Id, data.Name, data.Hex);
+        console.log(data);
         if ($(window).width() > 1100) {
             $('#hideColor').animate({ left: "10%" }, 500);
             $('#choiceColor').animate({ top: "-100%" }, 500);
@@ -99,9 +102,13 @@ var editColor = (function () {
             idpalette: selectedPalette
         }
     };
+      
+    console.log(data.color);
+
 
     function SuccessEdit(data) {
         console.log("Color was changed!!!");
+        console.log(data);
         $('.color#' + changedColor).children('.Thumbnail').css({ backgroundColor: CheckHEX() });
         $('.color#' + changedColor).children('.colorName').text(CheckName('#inputColorName'));
         $('.color#' + changedColor).children('.colorCode').text(CheckHEX());

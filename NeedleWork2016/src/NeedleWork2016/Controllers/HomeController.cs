@@ -10,6 +10,7 @@ using System.Collections;
 using NeedleWork2016.Core;
 using System.Web;
 using NeedleWork2016.ViewModels.Home;
+using NeedleWork2016.ViewModels.Palettes;
 
 namespace NeedleWork2016.Controllers
 {
@@ -23,26 +24,49 @@ namespace NeedleWork2016.Controllers
         }
 
         public JsonResult GetPalettes()
-        {                                                       //user confirmation
-            var PaletteList = _context.Palette.Where(p => (p.IdUser == User.GetUserId()) || (p.IdUser == null)).Select( 
-                    a => new
-                    {
-                        a.Id,
-                        a.Name,
-                    }); //User == null ? 
-            return Json(PaletteList);
+        {
+            try
+            {
+                PaletteListViewModel model = new PaletteListViewModel()
+                {
+                    Palettes = (_context.Palette
+                                .Where(p => (User == null) ? (p.IdUser == null) : ((p.IdUser == null) || (p.IdUser == User.GetUserId()))) as IEnumerable<Palette>)
+                                .Select(p => new PaletteViewModel(p)),
+
+                    Result = new ManipulationResult(Result.Success)
+                };
+                return Json(model);
+            }
+            catch (Exception ex)
+            {
+                PaletteListViewModel model = new PaletteListViewModel()
+                {
+                    Result = new ManipulationResult(Result.Exeption, ex)
+                };
+                return Json(model);
+            }
         }
 
         public JsonResult GetColors(int idpalette)
         {
-            var colors = _context.Color.Where(c => c.IdPalette == idpalette);
-            ArrayList rgbcolors = new ArrayList();
-            foreach (Color color in colors)
+            try
             {
-                object[] rgb = ColorConverter.HexToRGBwithName(color.Hex,color.Name);
-                rgbcolors.Add(rgb);
-            }; //make fat model
-            return Json(rgbcolors);
+                var colors = _context.Color.Where(c => c.IdPalette == idpalette);
+
+                RGBColorsViewModel model = new RGBColorsViewModel(colors)
+                {
+                    Result = new ManipulationResult(Result.Success)
+                };
+                return Json(model);
+            }
+            catch (Exception ex)
+            {
+                PaletteListViewModel model = new PaletteListViewModel()
+                {
+                    Result = new ManipulationResult(Result.Exeption, ex)
+                };
+                return Json(model);
+            }
         }
 
         public IActionResult Index()

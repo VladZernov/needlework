@@ -1,5 +1,6 @@
 ﻿using NeedleWork2016.Core;
 using NeedleWork2016.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +37,8 @@ namespace NeedleWork2016.ViewModels.Palettes
                 _name = value;
             }
         }
-        
-        //make hidden for nullable
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public ManipulationResult Result { get; set; }
 
         public PaletteViewModel(Palette model)

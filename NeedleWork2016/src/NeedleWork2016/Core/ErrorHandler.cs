@@ -7,5 +7,12 @@ namespace NeedleWork2016.Core
 {
     public class ErrorHandler
     {
+        public static string HandleException(Exception ex)
+        {
+            string msg = "";
+            if (ex.HResult == -2146233088)
+                msg = "Same element is already exist in database";
+            return msg;
+        }
     }
 }
