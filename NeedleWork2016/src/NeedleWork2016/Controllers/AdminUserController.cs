@@ -4,15 +4,18 @@ using System.Web.Script.Serialization;
 using System.Collections.Generic;
 using NeedleWork2016.Repository;
 using NeedleWork2016.Entities;
+using NeedleWork2016.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NeedleWork2016.Controllers
 {
     public class AdminUserController : Controller
     {
-        private NeedleWork2016Context _context;
+        private ApplicationDbContext _context;
+
         private readonly Core.Error.ListOfErrors _listOfErrors;
 
-        public AdminUserController(NeedleWork2016Context context)
+        public AdminUserController(ApplicationDbContext context)
         {
             _context = context;
             _listOfErrors = Core.Error.ErrorStorage.GetListOfErrors();
@@ -46,7 +49,7 @@ namespace NeedleWork2016.Controllers
 
         //POST method for call method to user editing by Id from UserProfileRepository
         [HttpPost]
-        public void EditUser(AspNetUsers user)
+        public void EditUser(ApplicationUser user)
         {
             UserProfileRepository.EditUser(user);
         }
@@ -59,7 +62,7 @@ namespace NeedleWork2016.Controllers
             {
                 return HttpNotFound();
             }
-            AspNetUsers aspNetUsers = _context.AspNetUsers.FirstOrDefault(m => m.Id == id);
+            ApplicationUser aspNetUsers = _context.Users.FirstOrDefault(m => m.Id == id);
             if (aspNetUsers == null)
             {
                 return HttpNotFound();
@@ -73,8 +76,8 @@ namespace NeedleWork2016.Controllers
         public IActionResult DeleteConfirmed(string id)
         {
             //lambda expressions for delition user by Id
-            AspNetUsers aspNetUsers = _context.AspNetUsers.FirstOrDefault(m => m.Id == id);
-            _context.AspNetUsers.Remove(aspNetUsers);
+            ApplicationUser aspNetUsers = _context.Users.FirstOrDefault(m => m.Id == id);
+            _context.Users.Remove(aspNetUsers);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -89,7 +92,7 @@ namespace NeedleWork2016.Controllers
         public void GridSave(string id, string firstname, string lastname, string email)
         {
             if (id!=null&&firstname!=null&&lastname!=null&&email!=null)
-            UserProfileRepository.EditUser(new AspNetUsers()
+            UserProfileRepository.EditUser(new ApplicationUser()
             { Id = id,
               FirstName =firstname,
               LastName =lastname,

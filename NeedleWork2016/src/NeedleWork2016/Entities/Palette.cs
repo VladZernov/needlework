@@ -1,3 +1,4 @@
+using NeedleWork2016.Models;
 using System;
 using System.Collections.Generic;
 
@@ -15,6 +16,6 @@ namespace NeedleWork2016.Entities
         public string Name { get; set; }
 
         public virtual ICollection<Color> ColorList { get; set; }
-        public virtual AspNetUsers IdUserNavigation { get; set; }
+        public virtual ApplicationUser IdUserNavigation { get; set; }
     }
 }

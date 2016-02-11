@@ -1,4 +1,5 @@
 ﻿using NeedleWork2016.Entities;
+using NeedleWork2016.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,17 +9,17 @@ namespace NeedleWork2016.Repository
     public class UserProfileRepository
     {
         //method with using predicate
-        //public static List<AspNetUsers> GetAllUsers(Func<AspNetUsers, bool> predicate)
+        //public static List<ApplicationUser> GetAllUsers(Func<ApplicationUser, bool> predicate)
         //{
             //...
         //}
 
         //select data about all users
-        public static List<AspNetUsers> GetAllUsers()
+        public static List<ApplicationUser> GetAllUsers()
         {
-            using (var context = new NeedleWork2016Context())
+            using (var context = new ApplicationDbContext())
             {
-                return context.AspNetUsers.Select(x=>new AspNetUsers()
+                return context.ApplicationUser.Select(x=>new ApplicationUser()
                 {
                     Id=x.Id,
                     Email=x.Email,
@@ -29,11 +30,11 @@ namespace NeedleWork2016.Repository
         }
 
         //User editing by Id
-        public static void EditUser(AspNetUsers user)
+        public static void EditUser(ApplicationUser user)
         {
             using (var context = new NeedleWork2016Context())
             {
-                var User = context.AspNetUsers.Where(c => c.Id == user.Id).FirstOrDefault();
+                var User = context.ApplicationUser.Where(c => c.Id == user.Id).FirstOrDefault();
                 if (User != null)
                 {
                     User.Id = user.Id;
@@ -53,8 +54,8 @@ namespace NeedleWork2016.Repository
             using (var context = new NeedleWork2016Context())
             {
                 //Linq request for delition user by Id
-                var User = context.AspNetUsers.Where(c => c.Id == _id).FirstOrDefault();
-                context.AspNetUsers.Remove(User);
+                var User = context.ApplicationUser.Where(c => c.Id == _id).FirstOrDefault();
+                context.ApplicationUser.Remove(User);
                 context.SaveChanges();
             }
         }
@@ -64,7 +65,7 @@ namespace NeedleWork2016.Repository
         {
             using (var context = new NeedleWork2016Context())
             {
-                var user = context.AspNetUsers.Where(m => m.Email == email).FirstOrDefault();
+                var user = context.ApplicationUser.Where(m => m.Email == email).FirstOrDefault();
                 if (user != null)
                     return true;
                 else
@@ -79,7 +80,7 @@ namespace NeedleWork2016.Repository
             {
                 if (UserIsRegistered(email))
                 {
-                    var user = context.AspNetUsers.Where(m => m.Email == email).FirstOrDefault();
+                    var user = context.ApplicationUser.Where(m => m.Email == email).FirstOrDefault();
                     if (user.EmailConfirmed)
                         return true;
                     else
@@ -94,7 +95,7 @@ namespace NeedleWork2016.Repository
         {
             using (var context = new NeedleWork2016Context())
             {
-                var user = context.AspNetUsers.Where(m => m.Email == email).FirstOrDefault();
+                var user = context.ApplicationUser.Where(m => m.Email == email).FirstOrDefault();
                 user.EmailConfirmed = true;
                 context.SaveChanges();                  
             }
