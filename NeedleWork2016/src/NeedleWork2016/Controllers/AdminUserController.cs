@@ -3,7 +3,6 @@ using Microsoft.AspNet.Mvc;
 using System.Web.Script.Serialization;
 using System.Collections.Generic;
 using NeedleWork2016.Repository;
-using NeedleWork2016.Entities;
 using NeedleWork2016.Models;
 using Microsoft.AspNet.Identity;
 

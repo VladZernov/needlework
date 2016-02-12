@@ -6,9 +6,9 @@ using Microsoft.AspNet.Mvc;
 using System.IO;
 using SelectPdf;
 using NeedleWork2016.Core;
-using NeedleWork2016.Entities;
 using Microsoft.AspNet.Razor;
 using System.Drawing;
+using NeedleWork2016.Models;
 
 namespace NeedleWork2016.Controllers
 {

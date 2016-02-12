@@ -2,15 +2,15 @@ using System.Linq;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using NeedleWork2016.Entities;
+using NeedleWork2016.Models;
 
 namespace NeedleWork2016.Controllers
 {
     public class FeedbacksController : Controller
     {
-        private NeedleWork2016Context _context;
+        private ApplicationDbContext _context;
 
-        public FeedbacksController(NeedleWork2016Context context)
+        public FeedbacksController(ApplicationDbContext context)
         {
             _context = context;
         }

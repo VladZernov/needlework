@@ -1,0 +1,36 @@
+@model IEnumerable<NeedleWork2016.Entities.UsersPDF>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<h2>List of reports</h2>
+
+
+<table class="table">
+   
+    <tr>
+        <td>
+            User`s first name
+        </td>
+        <td>
+            User`s last name
+        </td>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUserNavigation.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdUserNavigation.LastName)
+        </td>
+        <td>
+         
+            <a asp-action="GetPDFReportFromDatabase" asp-route-id="@item.Id">Open PDF</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+}
+</table>

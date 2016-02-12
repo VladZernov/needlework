@@ -3,7 +3,6 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using NeedleWork2016.Models;
-using NeedleWork2016.Entities;
 using System.Web.Security;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity;
@@ -18,9 +17,9 @@ namespace NeedleWork2016.Controllers
 {
     public class PalettesController : Controller
     {
-        private NeedleWork2016Context _context;
+        private ApplicationDbContext _context;
 
-        public PalettesController(NeedleWork2016Context context)
+        public PalettesController(ApplicationDbContext context)
         {
             _context = context;
         }

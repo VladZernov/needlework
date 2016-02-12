@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
-using NeedleWork2016.Entities;
 using System.Web.Security;
 using System.Security.Claims;
 using System.Collections;
@@ -11,14 +10,15 @@ using NeedleWork2016.Core;
 using System.Web;
 using NeedleWork2016.ViewModels.Home;
 using NeedleWork2016.ViewModels.Palettes;
+using NeedleWork2016.Models;
 
 namespace NeedleWork2016.Controllers
 {
     public class HomeController : Controller
     {
-        private NeedleWork2016Context _context;
+        private ApplicationDbContext _context;
 
-        public HomeController(NeedleWork2016Context context)
+        public HomeController(ApplicationDbContext context)
         {
             _context = context;
         }

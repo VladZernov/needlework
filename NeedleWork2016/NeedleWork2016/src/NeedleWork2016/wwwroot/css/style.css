@@ -1,0 +1,289 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    min-height: 100%;
+    height: 100%;
+    font-family: 'Trebuchet MS';
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+header a {
+    color: #fff;
+}
+
+
+header {
+    background: #050505;
+    position: fixed;
+    top: 0px;
+    height: 70px;
+    width: 100%;
+    z-index: 99;
+    font-weight: bold;
+    box-shadow: 0 0 10px 1px black;
+}
+
+#logo {
+    height: auto;
+    max-height: 70px;
+    min-height: 70px;
+    float: left;
+    margin-left: 2%;
+    margin-right: 2%;
+    /*width: auto;
+    max-width: 16%;*/
+}
+
+header a {
+    margin: 0;
+    padding: 0;
+}
+
+
+header ul {
+    display: inline-block;
+    height: 100%;
+    float: left;
+    margin: 0;
+    width: 75%;
+}
+
+header li {
+    color: white;
+    display: inline-block;
+    float: left;
+    left: 0px;
+    padding: 25px;
+    background: -webkit-linear-gradient(top, #000000 0%,#000000 50%,#2ac5ff 51%,#2ac5ff 100%);
+    background-size: 340px 240px;
+    -webkit-transition: .5s;
+}
+
+    header li:hover {
+        color: black;
+        background-position: -50% -50%;
+    }
+
+
+.u-pullRight {
+    position: relative;
+    float: right;
+    right: -30px;
+}
+
+footer {
+    background: #050505;
+    padding: 0px;
+}
+
+    footer a {
+        color: #AFAFAF;
+    }
+
+    footer p {
+        color: #AFAFAF;
+    }
+
+#footerLeft, #footerCenter, #footerRight {
+    display: inline-block;
+    width: 32%;
+    vertical-align: middle;
+}
+
+#footerCenter {
+    text-align: center;
+}
+
+#footerRight {
+    text-align: right;
+}
+
+    #footerRight label {
+        cursor: pointer;
+    }
+
+footer a, footer p {
+    margin: 30px;
+}
+
+.popUpBack {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    z-index: 100;
+}
+
+.popUp {
+    width: 300px;
+    margin: 150px auto 20px auto;
+    background: #FFF;
+    border-radius: 5px;
+    box-shadow: 0px 0px 40px #000;
+    padding: 30px;
+    display: none;
+    color: black;
+}
+
+    .popUp .popUp p, .popUp input {
+        margin: 5px;
+        padding: 0;
+        border: 1px dotted rgba(0, 0, 0, 0.45);
+        font-weight: bold;
+        font-size: 1em;
+        cursor: auto;
+    }
+
+
+    .popUp h2 {
+        margin: 5px;
+    }
+
+    .popUp input[type^=text], input[type^=password] {
+        width: 100%;
+        height: 20px;
+        text-align: center;
+    }
+
+    .popUp input[type^=button] {
+        width: 50%;
+        padding: 5px;
+        border: 0px;
+        font-weight: bold;
+        background: #00baff;
+        cursor: pointer;
+    }
+
+    .popUp a {
+        color: black;
+        font-size: 10pt;
+    }
+
+#registrationForm {
+    display: none;
+}
+
+.center {
+    text-align: center;
+}
+
+
+#showMenu {
+    position: absolute;
+    top: 5px;
+    height: 60px;
+    width: 70px;
+    float: right;
+    right: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+
+#feedback {
+    position: fixed;
+    z-index: 15;
+    left: -35px;
+    top: 50%;
+    width: 70px;
+    cursor: pointer;
+    transition: .5s;
+    transform: rotate(120deg);
+    -webkit-filter: contrast(2.6);
+    box-shadow: 0 0 10px 1px black;
+    border-radius: 100%;
+}
+
+    #feedback:hover {
+        transform: rotate(-0deg);
+        left: 0;
+    }
+
+
+#loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: none;
+    z-index: 200;
+    top: 0;
+    left: 0;
+}
+
+#loadingInner {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+    #loadingInner img {
+        width: 100px;
+    }
+
+@media screen and (max-width:1100px) {
+    header ul {
+        width: 100%;
+        display: block;
+        float: left;
+        margin-left: -40px;
+        display: none;
+    }
+
+    header li {
+        display: block;
+        /*height: 0;*/
+        padding: 15px;
+        overflow: hidden;
+        width: 100%;
+        float: left;
+        left: 0;
+    }
+
+    .u-pullRight {
+        display: block;
+        width: 100%;
+        float: left;
+        right: 0px;
+    }
+
+    #showMenu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #footerLeft, #footerCenter, #footerRight {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin: auto;
+        position: relative;
+        float: left;
+    }
+
+    footer {
+        width: 100%;
+        display: inline-block;
+    }
+
+        footer p {
+            position: relative;
+            float: left;
+        }
+}
+
+.validationError {
+    display: none;
+    color: crimson;
+}

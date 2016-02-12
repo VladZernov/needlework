@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NeedleWork2016.Models;
-using NeedleWork2016.Filters;using NeedleWork2016.Entities;
+using NeedleWork2016.Filters;
 
 namespace NeedleWork2016
 {
@@ -46,10 +46,10 @@ namespace NeedleWork2016
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
-            //var connection = @"Server=DESKTOP-2N2TC81;Database=NeedleWork2016;Trusted_Connection=True;";
-            var connection = @"Data Source=10.10.200.62;Initial Catalog=NeedleWork2016;Persist Security Info=True;User ID=needlework2016;Password=Qwerty1!";
+            var connection = @"Server=DESKTOP-2N2TC81;Database=NeedleWork2016;Trusted_Connection=True;";
+           //var connection = @"Data Source=10.10.200.62;Initial Catalog=NeedleWork2016;Persist Security Info=True;User ID=needlework2016;Password=Qwerty1!";
             services.AddEntityFramework()
-                .AddDbContext<NeedleWork2016Context>(options =>
+                .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(connection));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()

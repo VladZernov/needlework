@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using NeedleWork2016.Entities;
 
 namespace NeedleWork2016.Models
 {
@@ -13,6 +12,6 @@ namespace NeedleWork2016.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public Palette Palette { get; set; }
+        public virtual ICollection<Palette> Palettes { get; set; }
     }
 }
